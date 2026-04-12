@@ -101,7 +101,7 @@ private void loadUsers() {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,7 +113,7 @@ private void loadUsers() {
                 {null, null}
             },
             new String [] {
-                "DOG_ID", "ADOPTOR_NAME"
+                "ADOPTOR_ID", "NAME(DOG#)"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -141,7 +141,7 @@ private void loadUsers() {
                 txtSearchKeyReleased(evt);
             }
         });
-        getContentPane().add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, -1));
+        getContentPane().add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, -1));
 
         jButton4.setText("Read");
         jButton4.addActionListener(new java.awt.event.ActionListener() {

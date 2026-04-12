@@ -27,6 +27,7 @@ public class signupDatabase extends javax.swing.JFrame {
 
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         NameField = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
@@ -35,6 +36,7 @@ public class signupDatabase extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
@@ -42,6 +44,9 @@ public class signupDatabase extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/—Pngtree—colorful watercolor paw prints bordering_16709858.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/—Pngtree—colorful watercolor paw prints bordering_16709858.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,9 +83,13 @@ public class signupDatabase extends javax.swing.JFrame {
         jLabel7.setText("or");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 20, 20));
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/—Pngtree—colorful watercolor paw prints bordering_16709858.jpg"))); // NOI18N
-        jLabel8.setText("jLabel4");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 510, 700));
+        jLabel8.setText("jLabel8");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 630));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -178,11 +187,13 @@ public class signupDatabase extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
 }
