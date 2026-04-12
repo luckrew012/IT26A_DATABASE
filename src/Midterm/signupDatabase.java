@@ -4,7 +4,7 @@
  */
 package Midterm;
 
-import java.security.MessageDigest;
+
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,21 +19,7 @@ public class signupDatabase extends javax.swing.JFrame {
         initComponents();
     }
 
-   private String hashPassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hashedBytes = md.digest(password.getBytes());
-
-            StringBuilder sb = new StringBuilder();
-            for (byte b : hashedBytes) {
-                sb.append(String.format("%02x", b));
-            }
-
-            return sb.toString();
-        } catch (Exception e) {
-            return null;
-        }
-    }
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,6 +30,7 @@ public class signupDatabase extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,11 +45,21 @@ public class signupDatabase extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
+        jButton2.setText("Login");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(jButton2)
+                .addContainerGap(170, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -78,7 +75,10 @@ public class signupDatabase extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(236, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(21, 21, 21))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -102,16 +102,15 @@ public class signupDatabase extends javax.swing.JFrame {
           String username = NameField.getText();
     String password = new String(jPasswordField1.getPassword());
 
-    // 1. Empty check
     if (username.isEmpty() || password.isEmpty()) {
         JOptionPane.showMessageDialog(null, "Please fill all fields!");
         return;
     }
 
-    Connection conn = ConnectionDatabase.getConnection();
-
     try {
-        // 2. Check if username exists
+        Connection conn = ConnectionDatabase.getConnection();
+
+        // check duplicate username
         String checkSql = "SELECT * FROM users WHERE username=?";
         PreparedStatement checkPst = conn.prepareStatement(checkSql);
         checkPst.setString(1, username);
@@ -123,15 +122,12 @@ public class signupDatabase extends javax.swing.JFrame {
             return;
         }
 
-        // 3. Hash password
-        String hashedPassword = hashPassword(password);
-
-        // 4. Insert user
+        // INSERT (PLAIN TEXT PASSWORD)
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
         PreparedStatement pst = conn.prepareStatement(sql);
 
         pst.setString(1, username);
-        pst.setString(2, hashedPassword);
+        pst.setString(2, password); // ✅ PLAIN TEXT ONLY
 
         pst.executeUpdate();
 
@@ -142,10 +138,13 @@ public class signupDatabase extends javax.swing.JFrame {
 
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-    }
-    
+    }    
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +184,7 @@ public class signupDatabase extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NameField;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;

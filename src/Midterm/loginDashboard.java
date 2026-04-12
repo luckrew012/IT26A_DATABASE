@@ -15,21 +15,7 @@ public class loginDashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-   private String hashPassword(String password) {
-    try {
-        java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA-256");
-        byte[] hashedBytes = md.digest(password.getBytes());
-
-        StringBuilder sb = new StringBuilder();
-        for (byte b : hashedBytes) {
-            sb.append(String.format("%02x", b));
-        }
-
-        return sb.toString();
-    } catch (Exception e) {
-        return null;
-    }
-}
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,7 +86,7 @@ try {
     PreparedStatement pst = conn.prepareStatement(sql);
 
     String user = NameField.getText();
-    String pass = hashPassword(new String(jPasswordField1.getPassword()));
+    String pass = new String(jPasswordField1.getPassword());
 
     pst.setString(1, user);
     pst.setString(2, pass);
