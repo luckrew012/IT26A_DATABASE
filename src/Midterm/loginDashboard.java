@@ -155,7 +155,6 @@ try {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NameField;
     private javax.swing.JButton jButton1;
