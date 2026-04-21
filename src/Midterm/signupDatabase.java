@@ -17,6 +17,7 @@ public class signupDatabase extends javax.swing.JFrame {
      */
     public signupDatabase() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
    
@@ -107,7 +108,7 @@ public class signupDatabase extends javax.swing.JFrame {
     try {
         Connection conn = ConnectionDatabase.getConnection();
 
-        // check duplicate username
+       
         String checkSql = "SELECT * FROM users WHERE username=?";
         PreparedStatement checkPst = conn.prepareStatement(checkSql);
         checkPst.setString(1, username);
@@ -119,12 +120,12 @@ public class signupDatabase extends javax.swing.JFrame {
             return;
         }
 
-        // INSERT (PLAIN TEXT PASSWORD)
+        
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
         PreparedStatement pst = conn.prepareStatement(sql);
 
         pst.setString(1, username);
-        pst.setString(2, password); // ✅ PLAIN TEXT ONLY
+        pst.setString(2, password); 
 
         pst.executeUpdate();
 

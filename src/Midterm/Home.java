@@ -16,9 +16,9 @@ public class Home extends javax.swing.JFrame {
     private TableRowSorter<DefaultTableModel> sorter;
     public Home() {
          initComponents(); 
-
+setLocationRelativeTo(null);
     jTable1.setModel(new DefaultTableModel(
-        new Object[]{"ID", "NAME"}, 0
+        new Object[]{"ADOPTOR_ID", "NAME(DOG#)"}, 0
     ));
 
     loadUsers();
@@ -87,7 +87,6 @@ private void loadUsers() {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtSearch = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
@@ -101,7 +100,7 @@ private void loadUsers() {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,7 +117,7 @@ private void loadUsers() {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 330, 230));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 400, 250));
 
         jButton2.setText("Update");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +125,7 @@ private void loadUsers() {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
 
         jButton3.setText("Delete");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +133,7 @@ private void loadUsers() {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, -1, -1));
 
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -143,17 +142,9 @@ private void loadUsers() {
         });
         getContentPane().add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, -1));
 
-        jButton4.setText("Read");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/360_F_84556601_W71hd1xmCxZUhsscyNlokY1an7Kqx6ZJ.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 330));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,38 +234,6 @@ private void loadUsers() {
     sorter.setRowFilter(RowFilter.regexFilter("(?i)" + search));
     }//GEN-LAST:event_txtSearchKeyReleased
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        if (selectedId == -1) {
-        JOptionPane.showMessageDialog(this, "Select a user first!");
-        return;
-    }
-
-    try {
-        Connection conn = DriverManager.getConnection(
-            "jdbc:mysql://localhost:3306/MangkabongDB",
-            "root",
-            ""
-        );
-
-        String sql = "SELECT username, password FROM users WHERE id=?";
-        PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setInt(1, selectedId);
-
-        ResultSet rs = pst.executeQuery();
-
-        if (rs.next()) {
-            JOptionPane.showMessageDialog(this,
-                "Username: " + rs.getString("username") +
-                "\nPassword: " + rs.getString("password")
-            );
-        }
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, e.getMessage());
-    }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -314,7 +273,6 @@ private void loadUsers() {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
